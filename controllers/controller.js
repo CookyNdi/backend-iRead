@@ -1,8 +1,10 @@
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
-const { User, Content } = require("../models");
+const { User, Content, readingList } = require("../models");
 const path = require("path");
 const fs = require("fs");
+const Sequelize = require("sequelize");
+// import Op from "sequelize";
 // import path from "path"
 
 class SuperController {
@@ -63,10 +65,77 @@ class SuperController {
     }
   }
 
-  // static async getContentByTitle(req, res, next) {
-  //   const search = req.query.search_query || "";
+  static async incPageView(req, res, next) {
+    const bookId = req.body.id;
+    // const increment = req.body.increment;
+    try {
+      await Content.increment(
+        {
+          PageViews: 1,
+        },
+        {
+          where: {
+            id: bookId,
+          },
+        }
+      );
+      res.status(200).json({
+        message: `Page View On Book Id ${bookId} Increment`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  // }
+  static async searchContent(req, res, next) {
+    const page = parseInt(req.query.page) || 0;
+    const limit = parseInt(req.query.limit) || 5;
+    const search = req.query.query || "";
+    const offset = limit * page;
+    const totalData = await Content.count({
+      where: {
+        [Sequelize.Op.or]: [
+          {
+            Title: {
+              [Sequelize.Op.iLike]: "%" + search + "%",
+            },
+          },
+          {
+            Genres: {
+              [Sequelize.Op.iLike]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+    });
+    const totalPage = Math.ceil(totalData / limit);
+    const result = await Content.findAll({
+      where: {
+        [Sequelize.Op.or]: [
+          {
+            Title: {
+              [Sequelize.Op.iLike]: "%" + search + "%",
+            },
+          },
+          {
+            Genres: {
+              [Sequelize.Op.iLike]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+      offset: offset,
+      limit: limit,
+      order: [["id", "DESC"]],
+    });
+    res.json({
+      result: result,
+      page: page,
+      limit: limit,
+      totalData: totalData,
+      totalPage: totalPage,
+    });
+  }
 
   static async getContentById(req, res, next) {
     try {
@@ -96,9 +165,9 @@ class SuperController {
     const Title = req.body.title;
     const Sinopsis = req.body.sinopsis;
     const Stories = req.body.stories;
-    const isReadingList = req.body.isReadingList;
-    const Tags = req.body.tags;
+    const Genres = req.body.genres;
     const ReleaseDate = req.body.releaseDate;
+    const PageViews = 0;
     const file = req.files.file;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
@@ -120,9 +189,9 @@ class SuperController {
           Url: Url,
           Sinopsis: Sinopsis,
           Stories: Stories,
-          isReadingList: isReadingList,
-          Tags: Tags,
+          Genres: Genres,
           ReleaseDate: ReleaseDate,
+          PageViews: PageViews,
         });
         res.status(201).json({
           message: "Success Create",
@@ -163,8 +232,7 @@ class SuperController {
     const Url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
     const Sinopsis = req.body.sinopsis;
     const Stories = req.body.stories;
-    const isReadingList = req.body.isReadingList;
-    const Tags = req.body.tags;
+    const Genres = req.body.genres;
     const ReleaseDate = req.body.releaseDate;
     try {
       await Content.update(
@@ -174,8 +242,7 @@ class SuperController {
           Url: Url,
           Sinopsis: Sinopsis,
           Stories: Stories,
-          isReadingList: isReadingList,
-          Tags: Tags,
+          Genres: Genres,
           ReleaseDate: ReleaseDate,
         },
         {
@@ -196,13 +263,111 @@ class SuperController {
   static async deleteContent(req, res, next) {
     try {
       const contentId = req.params.id;
-      const result = await Content.findByPk(contentId);
+      const result = await Content.findOne(contentId);
       if (result) {
         const filePath = `./public/images/${result.Poster}`;
         fs.unlinkSync(filePath);
         await Content.destroy({
           where: {
             id: contentId,
+          },
+        });
+        res.status(200).json({
+          message: "Success Delete",
+        });
+      } else {
+        res.status(404).json({
+          name: "Content Not Found",
+        });
+      }
+    } catch (error) {
+      next(error);
+      console.log(error);
+    }
+  }
+
+  static async getReadingList(req, res, next) {
+    try {
+      const UserId = req.user.id;
+      const contents = await readingList.findAll({
+        where: {
+          UserId,
+        },
+      });
+      console.log(contents);
+      if (contents) {
+        res.status(200).json(contents);
+      } else {
+        throw {
+          name: "Content Not Found",
+        };
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async addToReadingList(req, res, next) {
+    try {
+      const UserId = req.user.id;
+      const BookId = parseInt(req.body.id);
+      const AuthorBook = req.body.username;
+      const Title = req.body.title;
+      const Sinopsis = req.body.sinopsis;
+      const Poster = req.body.poster;
+      const Url = req.body.url;
+      const Stories = req.body.stories;
+      const Genres = req.body.genres;
+      const ReleaseDate = req.body.releaseDate;
+
+      const result = await readingList.findOne({
+        where: {
+          UserId,
+          BookId,
+        },
+      });
+      if (!result) {
+        await readingList.create({
+          UserId: UserId,
+          BookId: BookId,
+          AuthorBook: AuthorBook,
+          Title: Title,
+          Poster: Poster,
+          Url: Url,
+          Sinopsis: Sinopsis,
+          Stories: Stories,
+          Genres: Genres,
+          ReleaseDate: ReleaseDate,
+        });
+        res.status(201).json({
+          message: "Success Add To Reading List",
+        });
+      } else {
+        throw {
+          message: "Content Already Added",
+        };
+      }
+    } catch (error) {
+      next(error);
+      console.log(error);
+    }
+  }
+
+  static async removeFromReadingList(req, res, next) {
+    try {
+      const UserId = req.user.id;
+      const BookId = req.body.bookid;
+      const result = await readingList.findOne({
+        where: {
+          UserId,
+          BookId,
+        },
+      });
+      if (result) {
+        await readingList.destroy({
+          where: {
+            UserId,
+            BookId,
           },
         });
         res.status(200).json({

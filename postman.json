@@ -1,0 +1,526 @@
+{
+	"info": {
+		"_postman_id": "db455e25-75c3-48f9-a1e7-c91ecf05e58a",
+		"name": "Kawah Edukasi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/content/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"content",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/content/data/search?query=5&page=0&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"content",
+						"data",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2t5TmRpIiwiaWF0IjoxNjc4NjEwMDIyfQ.oejAgXSAwOMmmf2GDFWViEp1t8g75v-OBEZ2UyOsBvI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZhciIsImlhdCI6MTY3ODI0NjY2OX0.Hp_cU8a6VIxOQ2ub5LVUbA37013YuF_YBMK9vi_c8cM",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Spongebob Squarepants",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "releaseDate",
+							"value": "1 jan 2023 ",
+							"type": "default",
+							"disabled": true
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/content/update/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"content",
+						"update",
+						"11"
+					],
+					"query": [
+						{
+							"key": "UserId",
+							"value": "12",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "bruh",
+							"disabled": true
+						},
+						{
+							"key": "image",
+							"value": "https://google.com",
+							"disabled": true
+						},
+						{
+							"key": "description1",
+							"value": "111",
+							"disabled": true
+						},
+						{
+							"key": "description2",
+							"value": "222",
+							"disabled": true
+						},
+						{
+							"key": "description3",
+							"value": "333",
+							"disabled": true
+						},
+						{
+							"key": "description4",
+							"value": "444",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"username\": \"Iqbal\",\r\n    \"password\": \"123\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "far",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "soleh",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Content",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2t5TmRpIiwiaWF0IjoxNjc4NjEwMDIyfQ.oejAgXSAwOMmmf2GDFWViEp1t8g75v-OBEZ2UyOsBvI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Spongebob",
+							"type": "default"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/E:/ngoding/2023/Bootcamp/The Project/Asset-20230310T071552Z-001/Asset/putris.jpg"
+						},
+						{
+							"key": "sinopsis",
+							"value": "ini sinopsis",
+							"type": "default"
+						},
+						{
+							"key": "stories",
+							"value": "The tiger (Panthera tigris) is the largest living cat species and a member of the genus Panthera. It is most recognisable for its dark vertical stripes on orange fur with a white underside. An apex predator, it primarily preys on ungulates, such as deer and wild boar. It is territorial and generally a solitary but social predator, requiring large contiguous areas of habitat to support its requirements for prey and rearing of its offspring. Tiger cubs stay with their mother for about two years and then become independent, leaving their mother's home range to establish their own.",
+							"type": "default"
+						},
+						{
+							"key": "genres",
+							"value": "Comedy, Family, Adventure",
+							"type": "default"
+						},
+						{
+							"key": "releaseDate",
+							"value": "16 Jan 2023",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/content/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"content",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklxYmFsIiwiaWF0IjoxNjc4NjEwNTQzfQ.6d26y-l7FREIwBJuTRaZoNoVG2B-W-2qP_dFZE-AdYo",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/content/delete/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"content",
+						"delete",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reading List",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2t5TmRpIiwiaWF0IjoxNjc4NjEwMDIyfQ.oejAgXSAwOMmmf2GDFWViEp1t8g75v-OBEZ2UyOsBvI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/readinglist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"readinglist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add To Reading List",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2t5TmRpIiwiaWF0IjoxNjc4NjEwMDIyfQ.oejAgXSAwOMmmf2GDFWViEp1t8g75v-OBEZ2UyOsBvI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "11",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "CookyNdi",
+							"type": "default"
+						},
+						{
+							"key": "title",
+							"value": "Spongebob Squarepants",
+							"type": "default"
+						},
+						{
+							"key": "sinopsis",
+							"value": "ini sinopsis",
+							"type": "default"
+						},
+						{
+							"key": "poster",
+							"value": "64b18e8bb34a8a8ee47028c4b9690844.jpg",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "http://localhost:5000/images/",
+							"type": "default"
+						},
+						{
+							"key": "stories",
+							"value": "The tiger (Panthera tigris) is the largest living cat species and a member of the genus Panthera. It is most recognisable for its dark vertical stripes on orange fur with a white underside. An apex predator, it primarily preys on ungulates, such as deer and wild boar. It is territorial and generally a solitary but social predator, requiring large contiguous areas of habitat to support its requirements for prey and rearing of its offspring. Tiger cubs stay with their mother for about two years and then become independent, leaving their mother's home range to establish their own.",
+							"type": "default"
+						},
+						{
+							"key": "genres",
+							"value": "Comedy, Family, Adventure",
+							"type": "default"
+						},
+						{
+							"key": "releaseDate",
+							"value": "16 Jan 2023",
+							"type": "default"
+						},
+						{
+							"key": "pageViews",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/readinglist/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"readinglist",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Reading List",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNvb2t5TmRpIiwiaWF0IjoxNjc4NjEwMDIyfQ.oejAgXSAwOMmmf2GDFWViEp1t8g75v-OBEZ2UyOsBvI",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "access_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "bookid",
+							"value": "11",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/readinglist/remove",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"readinglist",
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Page Views",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "11",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/pageviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pageviews"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

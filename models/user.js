@@ -1,9 +1,7 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const { hashPassword } = require('../helpers/bcrypt');
+  const { hashPassword } = require("../helpers/bcrypt");
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -12,25 +10,28 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Content)
+      User.hasMany(models.Content);
     }
-  };
-  User.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING
-  }, {
-    hooks: {
-      beforeCreate: (instance, option) => {
-        instance.password = hashPassword(instance.password)
-      },
-      beforeBulkCreate: (instances, option) => {
-        instances.forEach(element => {
-          element.password = hashPassword(element.password)
-        });
-      }
+  }
+  User.init(
+    {
+      username: DataTypes.STRING,
+      password: DataTypes.STRING,
     },
-    sequelize,
-    modelName: 'User',
-  });
+    {
+      hooks: {
+        beforeCreate: (instance, option) => {
+          instance.password = hashPassword(instance.password);
+        },
+        beforeBulkCreate: (instances, option) => {
+          instances.forEach((element) => {
+            element.password = hashPassword(element.password);
+          });
+        },
+      },
+      sequelize,
+      modelName: "User",
+    }
+  );
   return User;
 };

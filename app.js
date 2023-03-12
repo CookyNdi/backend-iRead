@@ -23,13 +23,19 @@ app.use(
 app.get("/", SuperController.welcome);
 app.post("/login", SuperController.login);
 app.get("/content/data", SuperController.getAllContent);
+app.get("/content/data/search", SuperController.searchContent);
 app.get("/content/data/:id", SuperController.getContentById);
+app.patch("/pageviews", SuperController.incPageView);
 
 app.use(authentication);
 
 app.post("/content/create", SuperController.createContent);
 app.patch("/content/update/:id", authorization, SuperController.updateContent);
 app.delete("/content/delete/:id", authorization, SuperController.deleteContent);
+
+app.get("/readinglist", SuperController.getReadingList);
+app.post("/readinglist/add", SuperController.addToReadingList);
+app.delete("/readinglist/remove", SuperController.removeFromReadingList);
 
 app.use(errorHandler);
 

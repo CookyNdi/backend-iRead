@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Contents", {
+    await queryInterface.createTable("readingLists", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,7 +17,16 @@ module.exports = {
         onUpdate: "cascade",
         onDelete: "cascade",
       },
-      Username: {
+      BookId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Contents",
+          key: "id",
+        },
+        onUpdate: "cascade",
+        onDelete: "cascade",
+      },
+      AuthorBook: {
         type: Sequelize.STRING,
       },
       Title: {
@@ -35,10 +44,7 @@ module.exports = {
       Stories: {
         type: Sequelize.TEXT,
       },
-      isReadingList: {
-        type: Sequelize.STRING,
-      },
-      Tags: {
+      Genres: {
         type: Sequelize.STRING,
       },
       ReleaseDate: {
@@ -55,6 +61,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Contents");
+    await queryInterface.dropTable("readingLists");
   },
 };
