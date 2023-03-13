@@ -1,7 +1,7 @@
 # Getting Started
 - npm install
 - npm install -g sequelize sequelize-cli (optional, if you have already installed it is not necessary)
-- change password in config/config.json/"password": "Your_Password",
+- change password in config/config.json/"password": "Your_Posgre_Password",
 - sequelize db:create
 - sequelize db:migrate
 - sequelize db:seed:all
