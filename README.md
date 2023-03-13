@@ -8,7 +8,10 @@
 - npm i -g nodemon (optional, if you have already installed it is not necessary)
 - npm start
 
-## Available Scripts End Points
+
+**IF YOU WANT TEST IN POSTMAN, YOU CAN IMPORT FILE posmant.json**
+
+## Available End Points
 
 ### [Get | Content : http://localhost:5000/content/data] :
 Menampilkan semua data yang ada dalam tabel content, output yang dihasilkan bertipe Array Of Object.
