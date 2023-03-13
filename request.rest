@@ -1,1 +1,0 @@
-GET http://localhost:5000/content/datas?search_query=harry
