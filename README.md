@@ -8,9 +8,9 @@
 - npm i -g nodemon (optional, if you have already installed it is not necessary)
 - npm start
 
-### Available Scripts End Points
+## Available Scripts End Points
 
-#### [Get | Content : http://localhost:5000/content/data] :
+### [Get | Content : http://localhost:5000/content/data] :
 Menampilkan semua data yang ada dalam tabel content, output yang dihasilkan bertipe Array Of Object.
 
 Contoh penerapan di frontend :
@@ -25,7 +25,7 @@ Contoh penerapan di frontend :
     getContent();
   }, []);
 
-#### [Get | Content By Id : http://localhost:5000/content/data/:id] :
+### [Get | Content By Id : http://localhost:5000/content/data/:id] :
 Menampilkan data berdasarkan id buku yang ada dalam tabel content, output yang dihasilkan bertipe Object.
 
 Contoh penerapan di frontend :
@@ -43,7 +43,7 @@ Contoh penerapan di frontend :
     <!-- need dependencies id -->
   }, [id]);
 
-#### [Get | Content By Search : http://localhost:5000/content/data/search] :
+### [Get | Content By Search : http://localhost:5000/content/data/search] :
 Menampilkan semua data yang ada dalam tabel content berdasarkan hasil query pencarian dari frontend, output yang dihasilkan bertipe Array Of Object.
 
 dapat menampung parameter : 
@@ -78,7 +78,7 @@ penerapan di frontend :
   `http://localhost:5000/content/data/search?query=${keyword}`
 
 
-#### [POST | LOGIN : http://localhost:5000/login] :
+### [POST | LOGIN : http://localhost:5000/login] :
 Membuat access token kalau data yang diinputkan sesuai dengan data yang terdapat dalam database tabel users, output yang dihasilkan bertipe Obejct.
 
 harus memberikan data : 
@@ -100,7 +100,7 @@ penerapan di frontend :
   };
 
 
-#### [PATCH | ADD PAGE VIEWS : http://localhost:5000/pageviews] :
+### [PATCH | ADD PAGE VIEWS : http://localhost:5000/pageviews] :
 Memrubah jumlah page views pada buku tertentu berdasarkan id dalam tabel content.
 
 harus memberikan data : 
@@ -124,10 +124,9 @@ penerapan di frontend :
 **NOTE : untuk key/data yang wajib dikirimkan itu agak sensitif harus lowercase/camelcase {contoh di bagian : harus memberikan data}, kalau berbeda saat input maka tidak akan ada perubahan di database.**
 
 
-### NEED AUTHENTICATION / LOGIN ACCESS 
+## NEED AUTHENTICATION / LOGIN ACCESS 
 
-
-#### [POST | CREATE DATA CONTENT : http://localhost:5000/content/create] :
+### [POST | CREATE DATA CONTENT : http://localhost:5000/content/create] :
 Membuat data content kedalam database tabel contents.
 
 harus memberikan data : 
@@ -163,7 +162,7 @@ penerapan di frontend :
 **NOTE :untuk key/data yang wajib dikirimkan itu agak sensitif harus lowercase/camelcase {contoh di bagian : harus memberikan data}, kalau berbeda saat input maka data di database akan NULL.**
 
 
-#### [PATCH | UPDATE DATA CONTENT : http://localhost:5000/content/update/:id] :
+### [PATCH | UPDATE DATA CONTENT : http://localhost:5000/content/update/:id] :
 Mengupdate data content yang ada di dalam database tabel contents.
 
 data yang dapat di update : 
@@ -199,7 +198,7 @@ penerapan di frontend :
 **NOTE :untuk key/data yang akan dikirimkan itu agak sensitif harus lowercase/camelcase {contoh di bagian : data yang dapat di update}, kalau berbeda saat input maka tidak akan ada perubahan data di database.**
 
 
-#### [DELETE | DELETE DATA CONTENT : http://localhost:5000/content/delete/:id] :
+### [DELETE | DELETE DATA CONTENT : http://localhost:5000/content/delete/:id] :
 Menghapus data content yang ada di dalam database tabel contents.
 
 data yang dibutuhkan : 
@@ -215,7 +214,7 @@ penerapan di frontend :
   };
 
 
-#### [Get | READING LIST : http://localhost:5000/readinglist] :
+### [Get | READING LIST : http://localhost:5000/readinglist] :
 Menampilkan semua data yang ada dalam tabel readinglists berdasarkan user login, output yang dihasilkan bertipe Array Of Object.
 
 Contoh penerapan di frontend :
@@ -231,7 +230,7 @@ Contoh penerapan di frontend :
   }, []);
 
 
-#### [POST | CREATE DATA READING LIST : http://localhost:5000/readinglist/add] :
+### [POST | CREATE DATA READING LIST : http://localhost:5000/readinglist/add] :
 Membuat data reading list kedalam database tabel readinglists.
 
 harus memberikan data : 
@@ -276,7 +275,7 @@ penerapan di frontend :
 **NOTE :untuk key/data yang wajib dikirimkan itu agak sensitif harus lowercase/camelcase {contoh di bagian : harus memberikan data}, kalau berbeda saat input maka data di database akan NULL.**
 
 
-#### [DELETE | DELETE DATA READING LIST : http://localhost:5000/readinglist/remove] :
+### [DELETE | DELETE DATA READING LIST : http://localhost:5000/readinglist/remove] :
 Menghapus data reading list yang ada di dalam database tabel readinglists.
 
 data yang dibutuhkan : 
