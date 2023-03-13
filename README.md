@@ -1,3 +1,5 @@
+# URL : `http://18.136.104.200/`
+
 # Getting Started
 - npm install
 - npm install -g sequelize sequelize-cli (optional, if you have already installed it is not necessary)
