@@ -167,7 +167,7 @@ class SuperController {
     const Stories = req.body.stories;
     const Genres = req.body.genres;
     const ReleaseDate = req.body.releaseDate;
-    const PageViews = 0;
+    const PageViews = Math.trunc(Math.random() * 15000);
     const file = req.files.file;
     const fileSize = file.data.length;
     const ext = path.extname(file.name);
