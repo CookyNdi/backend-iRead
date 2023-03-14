@@ -209,7 +209,7 @@ class SuperController {
     let fileName = "";
 
     if (req.files === null) {
-      fileName = Content.Poster;
+      fileName = result.Poster;
     } else {
       const file = req.files.file;
       const fileSize = file.data.length;
@@ -263,7 +263,7 @@ class SuperController {
   static async deleteContent(req, res, next) {
     try {
       const contentId = req.params.id;
-      const result = await Content.findOne(contentId);
+      const result = await Content.findByPk(contentId);
       if (result) {
         const filePath = `./public/images/${result.Poster}`;
         fs.unlinkSync(filePath);
