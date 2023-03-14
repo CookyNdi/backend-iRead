@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Name must be filled" },
         },
       },
-      Sinopsis: DataTypes.STRING,
+      Sinopsis: DataTypes.TEXT,
       Poster: DataTypes.STRING,
       Url: DataTypes.STRING,
       Stories: DataTypes.TEXT,

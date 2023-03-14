@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       Sinopsis: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       Stories: {
         type: Sequelize.TEXT,
