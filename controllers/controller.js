@@ -383,6 +383,25 @@ class SuperController {
       console.log(error);
     }
   }
+
+  static async getAllDataFromColumn(req, res) {
+    try {
+      const columnName = "Genres";
+      const allData = await Content.findAll({
+        attributes: [[columnName, "genre"]],
+        group: [columnName],
+        distinct: true,
+        where: {
+          [columnName]: {
+            [Sequelize.Op.not]: null,
+          },
+        },
+      });
+      res.status(200).json(allData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 module.exports = SuperController;

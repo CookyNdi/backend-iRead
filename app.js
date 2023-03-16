@@ -26,6 +26,7 @@ app.get("/content/data", SuperController.getAllContent);
 app.get("/content/data/search", SuperController.searchContent);
 app.get("/content/data/:id", SuperController.getContentById);
 app.patch("/pageviews", SuperController.incPageView);
+app.get("/get/genre", SuperController.getAllDataFromColumn);
 
 app.use(authentication);
 
