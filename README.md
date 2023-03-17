@@ -5,7 +5,6 @@
 - sequelize db:create
 - sequelize db:migrate
 - sequelize db:seed:all
-- npm i -g nodemon (optional, if you have already installed it is not necessary)
 - npm start
 
 
